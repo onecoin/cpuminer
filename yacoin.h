@@ -1,3 +1,5 @@
+#ifndef __YACOIN_H__
+#define __YACOIN_H__
 /* 
 include the constants and functions needed for YaCoin 
 
