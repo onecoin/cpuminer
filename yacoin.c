@@ -1,3 +1,7 @@
+
+const unsigned char minNfactor = 4;
+const unsigned char maxNfactor = 30;
+
 unsigned char GetNfactor(unsigned int nTimestamp) {
     int l = 0;
 
