@@ -1,4 +1,3 @@
-
 if WANT_JANSSON
 JANSSON_INCLUDES= -I$(top_srcdir)/compat/jansson
 else
@@ -7,7 +6,7 @@ endif
 
 EXTRA_DIST	= example-cfg.json nomacro.pl
 
-SUBDIRS		= compat
+SUBDIRS		= compat scrypt-jane
 
 INCLUDES	= $(PTHREAD_FLAGS) -fno-strict-aliasing $(JANSSON_INCLUDES)
 
