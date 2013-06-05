@@ -36,7 +36,6 @@
 #include <curl/curl.h>
 #include "compat.h"
 #include "miner.h"
-#include "yacoin.h"
 
 #define PROGRAM_NAME		"minerd"
 #define DEF_RPC_URL		"http://127.0.0.1:9332/"
