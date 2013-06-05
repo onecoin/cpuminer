@@ -1,5 +1,5 @@
 /*
-  scrypt-jane by Andrew M, https://github.com/floodyberry/scrypt-jane
+	scrypt-jane by Andrew M, https://github.com/floodyberry/scrypt-jane
 
 	Public Domain or MIT License, whichever is easier
 */
@@ -68,7 +68,7 @@ scrypt_power_on_self_test() {
 		scrypt((uint8_t *)t->pw, strlen(t->pw), (uint8_t *)t->salt, strlen(t->salt), t->Nfactor, t->rfactor, t->pfactor, test_digest, sizeof(test_digest));
 		scrypt_valid &= scrypt_verify(post_vectors[i], test_digest, sizeof(test_digest));
 	}
-
+	
 	if (!scrypt_valid) {
 #if !defined(SCRYPT_TEST)
 		scrypt_fatal_error("scrypt: scrypt power-on-self-test failed");

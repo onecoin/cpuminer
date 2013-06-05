@@ -2,7 +2,7 @@
 #define SCRYPT_JANE_H
 
 /*
-  Nfactor: Increases CPU & Memory Hardness
+	Nfactor: Increases CPU & Memory Hardness
 	N = (1 << (Nfactor + 1)): How many times to mix a chunk and how many temporary chunks are used
 
 	rfactor: Increases Memory Hardness
