@@ -1,5 +1,6 @@
 #include "cpuminer-config.h"
 #include "miner.h"
+#include "scrypt-jane/scrypt-jane.h"
 
 #include <stdio.h>
 #include <stdlib.h>
