@@ -1,3 +1,4 @@
+#include <stdio.h>
 
 const unsigned char minNfactor = 4;
 const unsigned char maxNfactor = 30;
