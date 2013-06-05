@@ -7,8 +7,6 @@ pulled out of the original scrypt-jane.c in ali1234's repository
 
 */
 
-const unsigned char minNfactor = 4;
-const unsigned char maxNfactor = 30;
 
 unsigned char GetNfactor(unsigned int nTimestamp)
 
