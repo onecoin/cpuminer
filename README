@@ -22,17 +22,37 @@ Notes for AIX users:
 	* GNU-style long options are not supported, but are accessible
 	  via configuration file
 
-Basic Windows build instructions, using MinGW:
+Detailed Windows build instructions, using MinGW (32-bit):
 	Install MinGW and the MSYS Developer Tool Kit (http://www.mingw.org/)
-		* Make sure you have mstcpip.h in MinGW\include
-	If using MinGW-w64, install pthreads-w64
+		* Choose C, C++ and MSys on install as select to have it update its libraries
+		* Install into C:\MinGW
+	Include mstcpip.h from WINE in your MinGW library
+		* http://source.winehq.org/source/include/mstcpip.h
+		* select version 1.3.34
+		* copy this code into C:\MinGW\Include\mstcpip.h (strip out the line numbers!)
 	Install libcurl devel (http://curl.haxx.se/download.html)
-		* Make sure you have libcurl.m4 in MinGW\share\aclocal
-		* Make sure you have curl-config in MinGW\bin
-	In the MSYS shell, run:
-		./autogen.sh	# only needed if building from git repo
-		LIBCURL="-lcurldll" ./configure CFLAGS="-O3"
-		make
+		* download curl-7.30.0.tar.gz from http://curl.haxx.se/download.html and put it in C:\deps\
+		* launch an MSYS shell and enter the following commands (the configure step will take a long time!)
+			cd /c/deps
+			tar -xvzf curl-7.30.0.tar.gz
+			cd curl-7.30.0
+			./configure –prefix=/c/mingw
+			make
+			make install
+		* copy c:\deps\curl-7.30.0\docs\libcurl\libcurl.m4 c:\mingw\share\aclocal
+		* copy c:\deps\curl-7.30.0\curl-config c:\mingw\bin
+	In the MSYS shell, navigate to the CPUminer source code direcctory
+		* You will likely get higher hashrates by forcing the compiler to build the executable for your 
+		  specific CPU architecture.  This is done by adding "-march=<value>" into the CFLAGS.  Those
+		  values can be found at http://gcc.gnu.org/onlinedocs/gcc/i386-and-x86_002d64-Options.html
+		  	common choices for intel are : core2, corei7, corei7-avx
+		  	common choices for AMD are : athlon-fx
+		* Execute the following (replacing the value of -march with the value for your CPU type)
+			./autogen.sh
+			./configure CFLAGS="-march=core2 -O3"
+			make
+			strip minerd.exe
+		* copy minerd.exe, C:\MinGW\bin\libcurl-4.dll, and C:\MinGW\bin\pthreadGC2.dll to the same directory
 
 Architecture-specific notes:
 	ARM:	No runtime CPU detection. The miner can take advantage
