@@ -36,7 +36,7 @@
 #include <curl/curl.h>
 #include "compat.h"
 #include "miner.h"
-#include "yacoin.h"
+#include "onecoin.h"
 
 #define PROGRAM_NAME		"minerd"
 #define DEF_RPC_URL		"http://127.0.0.1:9332/"
@@ -635,7 +635,7 @@ static void *miner_thread(void *userdata)
 			break;
 
 		case ALGO_SCRYPT_JANE:
-			rc = scanhash_yacoin(thr_id, work.data, work.target,
+			rc = scanhash_onecoin(thr_id, work.data, work.target,
 			                     max_nonce, &hashes_done);
 			break;
 

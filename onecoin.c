@@ -5,43 +5,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
-// Constants for YACoin's NFactor
-const unsigned char minNfactor = 4;
-const unsigned char maxNfactor = 30;
+unsigned int nChainStartTime = 1370872394;
 
-unsigned char GetNfactor(unsigned int nTimestamp) {
-    int l = 0;
-
-    if (nTimestamp <= 1367991200)
-        return 4;
-
-    unsigned long int s = nTimestamp - 1367991200;
-    while ((s >> 1) > 3) {
-      l += 1;
-      s >>= 1;
-    }
-
-    s &= 3;
-
-    int n = (l * 170 + s * 25 - 2320) / 100;
-
-    if (n < 0) n = 0;
-
-    if (n > 255)
-        printf("GetNfactor(%d) - something wrong(n == %d)\n", nTimestamp, n);
-
-    unsigned char N = (unsigned char)n;
-    //printf("GetNfactor: %d -> %d %d : %d / %d\n", nTimestamp - nChainStartTime, l, s, n, min(max(N, minNfa$
-
-//    return min(max(N, minNfactor), maxNfactor);
-
-    if(N<minNfactor) return minNfactor;
-    if(N>maxNfactor) return maxNfactor;
-    return N;
+unsigned char GetNfactor(unsigned int nTimestamp)
+{
+    unsigned int delta = nTimestamp - nChainStartTime;
+    if (delta < 0)
+        return 6;
+    double days = (double)delta / 24 / 60 / 60;
+    unsigned char Nfactor = floor(log10(days + 100) * 10 - 14);
+    if (Nfactor > 30)
+        return 30;
+    return Nfactor;
 }
 
-int scanhash_yacoin(int thr_id, uint32_t *pdata,
+int scanhash_onecoin(int thr_id, uint32_t *pdata,
         const uint32_t *ptarget,
         uint32_t max_nonce, unsigned long *hashes_done)
 {
