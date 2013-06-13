@@ -7,7 +7,7 @@
 #include <string.h>
 #include <math.h>
 
-unsigned int nChainStartTime = 1370872394;
+unsigned int nChainStartTime = 1371119462;
 
 unsigned char GetNfactor(unsigned int nTimestamp)
 {
